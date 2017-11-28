@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Lista klientów</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all" />
+</head>
+
+<body>
+<div class="logo">
+    <img src="/images/logo.png" width="422" height="100"/>
+</div>
+
+<h1>Lista klientów</h1>
+
+
+<table>
+    <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Numer telefonu</th>
+        <th>E-mail</th>
+        <th>Numer oferty</th>
+
+    </tr>
+    <tr th:each="client : ${list}">
+        <td th:text="${client.name}">Imię</td>
+        <td th:text="${client.surname}">Nazwisko</td>
+        <td th:text="${client.phoneNumber}">Nr telefonu</td>
+        <td th:text="${client.email}">E-mail</td>
+        <td th:text="${client.holiday.id}">id</td>
+
+    </tr>
+</table>
+
+
+<div class="center">
+    <a th:href="@{/holiday/}"><input type="button" value="Powrót do ofert"/></a>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Opis hotelu</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all"/>
+
+</head>
+<body>
+<div class="logo">
+    <img src="/images/logo.png" width="422" height="100"/>
+</div>
+
+<fieldset class="field">
+    <h3>Opis hotelu</h3>
+    <p th:text="${holiday.holidayDetails.hotelDesc}">Desription</p>
+    <h3>Lokalizacja</h3>
+    <p th:text="${holiday.holidayDetails.location}">Location</p>
+
+    <a th:href="@{${holiday.opinions}}"><input type="button" value="Opinie z portalu Tripadvisor"/></a>
+    <br/><br/>
+</fieldset>
+
+</body>
+</html>

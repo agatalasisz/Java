@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dostępne oferty</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all"/>
+</head>
+
+<body>
+<div class="logo">
+    <img src="/images/logo.png" width="422" height="100"/>
+</div>
+
+<div>
+    <form method="get" th:action="@{/search}">
+        <input type="text" th:value="${searchQuery != null} ? ${searchQuery} : ''" name="query" id="query"/>
+        <input type="submit" value="Szukaj"/>
+        <a th:href="@{/holiday}" class="btn btn-default"><strong>Wyczyść</strong></a>
+    </form>
+</div>
+<br/>
+
+<h1>Dostępne oferty</h1>
+
+
+<table>
+    <tr>
+        <th>Nr oferty</th>
+        <th>Kierunki</th>
+        <th>Hotel</th>
+        <th>Standard hotelu</th>
+        <th>Długość pobytu</th>
+        <th>Cena</th>
+        <th>Wolne pokoje</th>
+        <th>Zarezerwowane pokoje</th>
+        <th>Opcje</th>
+
+    </tr>
+    <tr th:each="holiday : ${list}">
+        <td th:text="${holiday.id}">Nr oferty</td>
+        <td th:text="${holiday.country}">Kierunki</td>
+        <td th:text="${holiday.hotel}">Hotel</td>
+        <td><span th:text="${holiday.stars}"/>★</td>
+        <td><span th:text="${holiday.days}"/> dni</td>
+        <td><span th:text="${holiday.price}"/> zł</td>
+        <td th:text="${holiday.freeRooms}">Wolne pokoje</td>
+        <td th:text="${holiday.bookedRooms}">Zarezerwowane pokoje</td>
+
+
+        <td>
+            <p><a th:href="@{/holiday/{id}(id=${holiday.id})}">Opis hotelu</a> -
+                <a th:href="@{/holiday/reserve/{id}(id=${holiday.id})}">Rezerwuj</a></p>
+
+
+        </td>
+    </tr>
+</table>
+
+<div class="center">
+    <a th:href="@{/holiday/management}"><input type="button" value="Zarządzaj ofertami"/></a>
+    <a th:href="@{/holiday/clients}"><input type="button" value="Lista rezerwacji"/></a>
+</div>
+
+</body>
+</html>

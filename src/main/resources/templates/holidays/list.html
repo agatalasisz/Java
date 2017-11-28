@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>holiday list</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all"/>
+</head>
+
+<body>
+<div class="logo">
+    <img src="/images/logo.png" width="422" height="100"/>
+</div>
+
+
+<h1>Zarządzaj ofertami</h1>
+
+
+<table>
+    <tr>
+        <th>Nr oferty</th>
+        <th>Kierunki</th>
+        <th>Hotel</th>
+        <th>Standard hotelu</th>
+        <th>Długość pobytu</th>
+        <th>Cena</th>
+        <th>Wolne pokoje</th>
+        <th>Zarezerwowane pokoje</th>
+        <th>Opcje</th>
+
+    </tr>
+    <tr th:each="holiday : ${list}">
+        <td th:text="${holiday.id}">Nr oferty</td>
+        <td th:text="${holiday.country}">Kierunki</td>
+        <td th:text="${holiday.hotel}">Hotel</td>
+        <td><span th:text="${holiday.stars}"/>★</td>
+        <td><span th:text="${holiday.days}"/> dni</td>
+        <td><span th:text="${holiday.price}"/> zł</td>
+        <td th:text="${holiday.freeRooms}">Wolne pokoje</td>
+        <td th:text="${holiday.bookedRooms}">Zarezerwowane pokoje</td>
+
+
+        <td>
+            <p><a th:href="@{/holiday/{id}(id=${holiday.id})}">Opis hotelu</a> -
+                <a th:href="@{/holiday/edit/{id}(id=${holiday.id})}">Edytuj</a> -
+                <a th:href="@{/holiday/remove/{id}(id=${holiday.id})}">Usuń ofertę</a></p>
+
+        </td>
+    </tr>
+</table>
+
+
+<div class="center">
+    <a th:href="@{/holiday/add}"><input type="button" value="Dodaj nową ofertę"/></a>
+    <input type="button" value="Powrót" onclick="history.back()"/>
+</div>
+
+
+</body>
+</html>

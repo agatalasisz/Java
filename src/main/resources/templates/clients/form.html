@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dane klienta</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all" />
+
+</head>
+<body>
+<div class="logo">
+    <img src="/images/logo.png" width="422" height="100"/>
+</div>
+
+<form th:action="@{/holiday/reserve}" th:object="${client}" method="post">
+
+    <fieldset class="field">
+        <legend>Dane klienta</legend>
+
+       <input type="hidden" th:field="${client.holiday.id}" th:value="${client.holiday.id}" />
+        <div>
+            <label for="name">Imię:</label>
+            <input th:field="${client.name}"
+                   type="text"
+                   id="name"
+                   name="name"
+                   th:class="${#fields.hasErrors('name') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('name') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('name')}"
+               th:errors="${client.name}" ></p>
+        </div>
+        <hr/>
+        <div>
+            <label for="surname">Nazwisko:</label>
+            <input th:field="${client.surname}"
+                   type="text"
+                   id="surname"
+                   name="surname"
+                   th:class="${#fields.hasErrors('surname') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('surname') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('surname')}"
+               th:errors="${client.surname}" ></p>
+        </div>
+        <hr/>
+        <div>
+            <label for="phoneNumber">Numer telefonu:</label>
+            <input th:field="${client.phoneNumber}"
+                   type="text"
+                   id="phoneNumber"
+                   name="phoneNumber"
+                   th:class="${#fields.hasErrors('phoneNumber') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('phoneNumber') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('phoneNumber')}"
+               th:errors="${client.phoneNumber}" ></p>
+        </div>
+        <hr/>
+        <div>
+            <label for="email">E-mail:</label>
+            <input th:field="${client.email}"
+                   type="email"
+                   id="email"
+                   name="email"
+                   th:class="${#fields.hasErrors('email') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('email') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('email')}"
+               th:errors="${client.email}" ></p>
+        </div>
+        <hr/>
+
+
+    <div class="center">
+        <input type="submit" name="submit" value="Dodaj" />
+    </div>
+
+    </fieldset>
+
+
+</form>
+
+</body>
+</html>

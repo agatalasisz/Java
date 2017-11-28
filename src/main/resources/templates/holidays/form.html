@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Formularz oferty</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" media="all"/>
+
+</head>
+<body>
+<div class="logo">
+    <img src="/images/logo.png" width="422" height="100"/>
+</div>
+
+<form th:action="@{/holiday/add}" th:object="${holiday}" method="post">
+
+    <fieldset class="field">
+        <legend>Oferta wakacji</legend>
+
+        <input type="hidden" th:field="${holiday.id}" th:value="${holiday.id}"/>
+        <div>
+            <label for="country">Kraj pobytu:</label>
+            <input th:field="${holiday.country}"
+                   type="text"
+                   id="country"
+                   name="country"
+                   th:class="${#fields.hasErrors('country') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('country') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('country')}"
+               th:errors="${holiday.country}"></p>
+        </div>
+        <hr/>
+        <div>
+            <label for="hotel">Nazwa hotelu:</label>
+            <input th:field="${holiday.hotel}"
+                   type="text"
+                   id="hotel"
+                   name="hotel"
+                   th:class="${#fields.hasErrors('hotel') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('hotel') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('hotel')}"
+               th:errors="${holiday.hotel}"></p>
+        </div>
+        <hr/>
+        <div>
+            <label
+                    for="stars">Standard hotelu:</label><br/>
+
+            <select class="form-control" th:field="${holiday.stars}" id="stars">
+                <option th:value="3" th:text="3"></option>
+                <option th:value="4" th:text="4"></option>
+                <option th:value="5" th:text="5"></option>
+            </select>
+        </div>
+        <hr/>
+        <div>
+            <label for="opinions">Link do Tripadvisor (opinie):</label><br/>
+            <input th:field="${holiday.opinions}"
+                   type="text"
+                   id="opinions"
+                   name="opinions"
+                   th:class="${#fields.hasErrors('opinions') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('opinions') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('opinions')}"
+               th:errors="${holiday.opinions}"></p>
+        </div>
+        <hr/>
+        <div>
+            <label for="hotelDesc">Opis hotelu:</label><br/>
+            <textarea th:field="${holiday.holidayDetails.hotelDesc}"
+                      type="text"
+                      id="hotelDesc"
+                      name="hotelDesc"
+            ></textarea>
+        </div>
+        <hr/>
+        <div>
+            <label for="location">Lokalizacja:</label><br/>
+            <textarea th:field="${holiday.holidayDetails.location}"
+                      type="text"
+                      id="location"
+                      name="location"
+            ></textarea>
+        </div>
+        <hr/>
+        <div>
+            <label for="days">Długość pobytu:</label><br/>
+            <input th:field="${holiday.days}"
+                   type="number"
+                   id="days"
+                   name="days"
+                   th:class="${#fields.hasErrors('days') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('days') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('days')}"
+            >Podaj wartość od 7 do 14</p>
+        </div>
+        <hr/>
+        <div>
+            <label for="price">Cena:</label>
+            <input th:field="${holiday.price}"
+                   type="number"
+                   id="price"
+                   name="price"
+                   th:class="${#fields.hasErrors('price') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('price') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('price')}"
+            >Podaj poprawną cenę</p>
+        </div>
+        <hr/>
+        <div>
+            <label for="freeRooms">Wolne pokoje:</label>
+            <input th:field="${holiday.freeRooms}"
+                   type="number"
+                   id="freeRooms"
+                   name="freeRooms"
+                   th:class="${#fields.hasErrors('freeRooms') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('freeRooms') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('freeRooms')}"
+            >Podaj poprawną wartość</p>
+        </div>
+        <hr/>
+        <div>
+            <label for="freeRooms">Zajęte pokoje:</label>
+            <input th:field="${holiday.bookedRooms}"
+                   type="number"
+                   id="bookedRooms"
+                   name="bookedRooms"
+                   readonly="readonly"
+                   th:class="${#fields.hasErrors('bookedRooms') ? 'error' : ''}"
+            />
+            <p th:class="${#fields.hasErrors('bookedRooms') ? 'error-text' : ''}"
+               th:if="${#fields.hasErrors('bookedRooms')}"
+            >Podaj poprawną wartość</p>
+        </div>
+        <hr/>
+
+        <div class="center">
+            <input type="submit" name="submit" value="Dodaj"/>
+        </div>
+
+
+    </fieldset>
+
+
+</form>
+
+</body>
+</html>
